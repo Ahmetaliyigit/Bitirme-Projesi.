@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\AHMAYTI_B12_WEB.props" />
+</Project>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Giris.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UserAl\TisortAl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UserAl\MontAl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UserAl\PantolonAl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UserAl\GomlekAl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Kayıt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\KullaniciMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UserBakiye\UserBakiye.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserEkle\UserGomlekEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserEkle\UserMontEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserEkle\UserPantolonEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserEkle\UserTisortEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserGuncelle\UserGomlekGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserGuncelle\UserMontGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserGuncelle\UserPantolonGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserGuncelle\UserTisortGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserSil\UserGomlekSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserSil\UserMontSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserSil\UserPantolonSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UserSil\UserTisortSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="User\UsersMenu\UsersMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPKullanici\VIPKullanici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPSil\VIPMontSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPSil\VIPPantolonSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPSil\VIPGomlekSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPGuncelle\VIPGomlekGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPEkle\VIPGomlekEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPEkle\VIPPantolonEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPEkle\VIPMontEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPEkle\VIPTisort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPGuncelle\VIPMontGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPGuncelle\VIPPantolonGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPGuncelle\VIPTisortGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VIP\VIPSil\VIPTisortSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
