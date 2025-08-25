@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace DAL.EfCore
 {
-    public class Repository<T> 
-    where T : class 
+    public class Repository<T>
+    where T : class
     {
         private readonly DataContext context;
 
@@ -22,14 +22,12 @@ namespace DAL.EfCore
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null)
         {
-            var Categorys = context.Set<T>().AsQueryable();
-
             if (filter != null)
             {
-                Categorys = Categorys.Where(filter);
+                return await context.Set<T>().Where(filter).ToListAsync();
             }
 
-            return await Categorys.ToListAsync();
+            return await context.Set<T>().ToListAsync();
         }
         public async Task CreateAsync(T category)
         {
@@ -45,9 +43,25 @@ namespace DAL.EfCore
         {
             return await context.Set<T>().FindAsync(id);
         }
-        public async Task UpdateAsync()
+        public async Task SaveChanges()
         {
             await context.SaveChangesAsync();
         }
+
+        public async Task UpdateAsync(T entity)
+        {
+            context.Update(entity);
+        }
+
+        public async Task DeleteByIdAsync(int Id)
+        {
+            var product = await context.Set<T>().FindAsync(Id);
+            if (product != null)
+            {
+                context.Set<T>().Remove(product);
+                await context.SaveChangesAsync();
+            }
+        }
+
     }
 }

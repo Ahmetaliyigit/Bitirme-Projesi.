@@ -1,4 +1,5 @@
 ﻿using BLL.Abstract;
+using DAL.Abstract;
 using DAL.EfCore;
 using Entity;
 using System;
@@ -12,50 +13,57 @@ namespace BLL.Service
 {
     public class ProductService : IProductService
     {
-        private readonly ProductDAL products;
+        private readonly IProductDAL dal;
 
-        public ProductService(ProductDAL dal)
+        public ProductService(IProductDAL Dal)
         {
-            products = dal;
+            dal = Dal;
         }
 
-        public async Task<List<Product>> GetallAsync(Expression<Func<Product, bool>> filter = null)
+        public async Task CreateAsync(Product entity)
         {
-            return await products.GetAllAsync(filter);
+            await dal.CreateAsync(entity);
         }
 
-        public void UpdateProductAsync(Product product)
+        public async Task UpdateAsync(Product entity)
         {
-            products.UpdateAsync();
-        }
-        public async Task AddProductAsync(Product product)
-        {
-            await products.CreateAsync(product);
-        }
-
-        public Task CreateAsync(Product entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync()
-        {
-            throw new NotImplementedException();
+            await dal.UpdateAsync(entity);
         }
 
         public Task DeleteAsync(Product category)
         {
-            throw new NotImplementedException();
+            return dal.DeleteAsync(category);
         }
 
-        public Task<List<Product>> GetAllAsync(Expression<Func<Product, bool>> filter = null)
+        public async Task<List<Product>> GetAllAsync(Expression<Func<Product, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            if (filter != null)
+            {
+                return await dal.GetAllAsync(filter);
+            }
+
+            return await dal.GetAllAsync();
         }
 
-        public Task<Product> GetByIdAsync(int Id)
+        public async Task<Product> GetByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await dal.GetByIdAsync(Id);
         }
+
+        public async Task SaveChanges()
+        {
+            await dal.SaveChanges();
+        }
+
+        public Task DeleteByIdAsync(int Id)
+        {
+            return dal.DeleteByIdAsync(Id);
+        }
+
+        public async Task<List<Product>> GetProuctsWithCategoryGenderColorAsync(Expression<Func<Product, bool>> filter = null)
+        {
+            return await dal.GetProuctsWithCategoryGenderColorAsync(filter);
+        }
+
     }
 }

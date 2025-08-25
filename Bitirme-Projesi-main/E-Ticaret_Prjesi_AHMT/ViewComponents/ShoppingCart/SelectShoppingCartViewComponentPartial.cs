@@ -1,13 +1,14 @@
-﻿using BLL.Service;
+﻿using BLL.Abstract;
+using BLL.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Ticaret_Prjesi_AHMT.ViewComponents.ShoppingCart
 {
     public class SelectShoppingCartViewComponentPartial : ViewComponent
     {
-        private readonly ProductService servise;
+        private readonly IProductService servise;
 
-        public SelectShoppingCartViewComponentPartial(ProductService productServise)
+        public SelectShoppingCartViewComponentPartial(IProductService productServise)
         {
             servise =  productServise;
         }
@@ -15,7 +16,7 @@ namespace E_Ticaret_Prjesi_AHMT.ViewComponents.ShoppingCart
         public async Task<IViewComponentResult> InvokeAsync()
         {
             ViewBag.Toplamtutar = 0;
-            return View(await servise.GetallAsync());
+            return View(await servise.GetAllAsync());
         }
     }
 }

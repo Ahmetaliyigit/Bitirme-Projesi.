@@ -1,5 +1,7 @@
 ﻿using BLL.Abstract;
+using DAL.Abstract;
 using DAL.EfCore;
+using DAL.Migrations;
 using Entity;
 using System;
 using System.Collections.Generic;
@@ -12,41 +14,46 @@ namespace BLL.Service
 {
     public class CategoryService : ICategoryService
     {
-        private readonly CategoryDAL category;
+        private readonly ICategoryDAL dal;
 
-        public CategoryService(CategoryDAL dAL)
+        public CategoryService(ICategoryDAL dAL)
         {
-            category = dAL;
+            dal = dAL;
         }
 
-        public Task CreateAsync(Category entity)
+        public async Task CreateAsync(Category entity)
         {
-            throw new NotImplementedException();
+             await dal.CreateAsync(entity);
         }
 
-        public Task DeleteAsync(Category category)
+        public async Task DeleteAsync(Category entity)
         {
-            throw new NotImplementedException();
+            await dal.DeleteAsync(entity);
         }
 
-        public Task<List<Category>> GetAllAsync(Expression<Func<Category, bool>> filter = null)
+        public Task DeleteByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return dal.DeleteByIdAsync(Id);
         }
 
-        public Task<Category> GetByIdAsync(int Id)
+        public async Task<List<Category>> GetAllAsync(Expression<Func<Category, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return await dal.GetAllAsync(filter);
         }
 
-        public async Task<List<Category>> GetCategoriesAsync(Expression<Func<Category, bool>> filter = null)
+        public async Task<Category> GetByIdAsync(int Id)
         {
-            return await category.GetAllAsync(filter);
+            return await dal.GetByIdAsync(Id);
         }
 
-        public Task UpdateAsync()
+        public async Task SaveChanges()
         {
-            throw new NotImplementedException();
+            await dal.SaveChanges();
+        }
+
+        public async Task UpdateAsync(Category entity)
+        {
+            await dal.UpdateAsync(entity);
         }
     }
 }

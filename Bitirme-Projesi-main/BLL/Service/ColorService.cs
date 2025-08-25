@@ -1,4 +1,5 @@
 ﻿using BLL.Abstract;
+using DAL.Abstract;
 using DAL.EfCore;
 using Entity;
 using System;
@@ -12,26 +13,26 @@ namespace BLL.Service
 {
     public class ColorService : IColorService
     {
-        private readonly ColorDAL color;
+        private readonly IColorDAL dal;
 
-        public ColorService(ColorDAL dAL)
+        public ColorService(IColorDAL dAL)
         {
-            color = dAL;
+            dal = dAL;
         }
 
-        public Task CreateAsync(Color entity)
+        public async Task CreateAsync(Color entity)
         {
-            throw new NotImplementedException();
+            await dal.CreateAsync(entity);
         }
 
-        public Task DeleteAsync(Color category)
+        public async Task DeleteAsync(Color category)
         {
-            throw new NotImplementedException();
+            await dal.DeleteAsync(category);
         }
 
-        public Task<List<Color>> GetAllAsync(Expression<Func<Color, bool>> filter = null)
+        public async Task<List<Color>> GetAllAsync(Expression<Func<Color, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return await dal.GetAllAsync(filter);
         }
 
         public Task<Color> GetByIdAsync(int Id)
@@ -39,14 +40,19 @@ namespace BLL.Service
             throw new NotImplementedException();
         }
 
-        public async Task<List<Color>> GetColorsAsync(Expression<Func<Color, bool>> filter = null)
+        public async Task SaveChanges()
         {
-            return await color.GetAllAsync(filter);
+            await dal.SaveChanges();
         }
 
-        public Task UpdateAsync()
+        public async Task UpdateAsync(Color entity)
         {
-            throw new NotImplementedException();
+            await dal.UpdateAsync(entity);
+        }
+
+        public Task DeleteByIdAsync(int Id)
+        {
+            return dal.DeleteByIdAsync(Id);
         }
     }
 }

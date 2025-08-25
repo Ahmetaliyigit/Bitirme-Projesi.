@@ -1,5 +1,7 @@
 ﻿using BLL.Abstract;
+using DAL.Abstract;
 using DAL.EfCore;
+using DAL.Migrations;
 using Entity;
 using System;
 using System.Collections.Generic;
@@ -12,40 +14,45 @@ namespace BLL.Service
 {
     public class GenderService : IGenderService
     {
-        private readonly GenderDAL gender;
-        public GenderService(GenderDAL dAL)
+        private readonly IGenderDAL dal;
+        public GenderService(IGenderDAL dAL)
         {
-            gender = dAL;
+            dal = dAL;
         }
 
-        public Task CreateAsync(Gender entity)
+        public async Task CreateAsync(Gender entity)
         {
-            throw new NotImplementedException();
+            await dal.CreateAsync(entity);
         }
 
-        public Task DeleteAsync(Gender category)
+        public async Task DeleteAsync(Gender entity)
         {
-            throw new NotImplementedException();
+            await dal.DeleteAsync(entity);
         }
 
-        public Task<List<Gender>> GetAllAsync(Expression<Func<Gender, bool>> filter = null)
+        public async Task<List<Gender>> GetAllAsync(Expression<Func<Gender, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return await dal.GetAllAsync(filter);
         }
 
-        public Task<Gender> GetByIdAsync(int Id)
+        public async Task<Gender> GetByIdAsync(int Id)
         {
-            throw new NotImplementedException();
+            return await dal.GetByIdAsync(Id);
         }
 
-        public async Task<List<Gender>> GetGendersAsync(Expression<Func<Gender, bool>> filter = null)
+        public async Task SaveChanges()
         {
-            return await gender.GetAllAsync(filter);
+            await dal.SaveChanges();
         }
 
-        public Task UpdateAsync()
+        public async Task UpdateAsync(Gender entity)
         {
-            throw new NotImplementedException();
+            await dal.UpdateAsync(entity);
+        }
+
+        public Task DeleteByIdAsync(int Id)
+        {
+            return dal.DeleteByIdAsync(Id);
         }
     }
 }

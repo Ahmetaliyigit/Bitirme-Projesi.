@@ -1,4 +1,5 @@
-﻿using DAL.Concrate.EfCore.Context;
+﻿using DAL.Abstract;
+using DAL.Concrate.EfCore.Context;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL.EfCore
 {
-    public class GenderDAL : Repository<Gender>
+    public class GenderDAL : Repository<Gender> , IGenderDAL
     {
         private readonly DataContext context;
 

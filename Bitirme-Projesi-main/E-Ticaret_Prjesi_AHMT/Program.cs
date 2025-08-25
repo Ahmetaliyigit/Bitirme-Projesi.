@@ -1,4 +1,7 @@
+using BLL.Abstract;
 using BLL.Service;
+using DAL.Abstract;
+using DAL.Concrate.EfCore;
 using DAL.Concrate.EfCore.Context;
 using DAL.EfCore;
 using Entity;
@@ -19,7 +22,7 @@ namespace E_Ticaret_Prjesi_AHMT
 
             builder.Services.AddHttpClient();       
             builder.Services.AddDbContext<DataContext>(opts =>
-            opts.UseSqlServer(builder.Configuration.GetConnectionString("ProjectConnection"))); // appsetting.json a giderek oradan Proje ba�lant�s�n� al�r ve a�a��da belirtilen S�n�fa yollan�r 
+            opts.UseSqlServer(builder.Configuration.GetConnectionString("ProjectConnection"))); // appsetting.json a giderek oradan Proje baglantisini alir ve a�a��da belirtilen S�n�fa yollan�r 
 
             
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>().
@@ -27,15 +30,17 @@ namespace E_Ticaret_Prjesi_AHMT
                 .AddDefaultTokenProviders();
                 
 
-            builder.Services.AddScoped<CategoryDAL>();
-            builder.Services.AddScoped<ColorDAL>();
-            builder.Services.AddScoped<ProductDAL>();
-            builder.Services.AddScoped<GenderDAL>();
+            builder.Services.AddScoped<ICategoryDAL,CategoryDAL>();
+            builder.Services.AddScoped<IColorDAL,ColorDAL>();
+            builder.Services.AddScoped<IProductDAL,ProductDAL>();
+            builder.Services.AddScoped<IGenderDAL,GenderDAL>();
+            builder.Services.AddScoped<ICountryDAL,CountryDAL> ();
 
-            builder.Services.AddScoped<CategoryService>();
-            builder.Services.AddScoped<ColorService>();
-            builder.Services.AddScoped<GenderService>();
-            builder.Services.AddScoped<ProductService>();
+            builder.Services.AddScoped<ICategoryService,CategoryService>();
+            builder.Services.AddScoped<IColorService,ColorService>();
+            builder.Services.AddScoped<IGenderService,GenderService>();
+            builder.Services.AddScoped<IProductService,ProductService>();
+            builder.Services.AddScoped<ICountryService, ContryService>();
 
 
 

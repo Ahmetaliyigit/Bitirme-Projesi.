@@ -10,9 +10,11 @@ namespace Entity.Reposteries
     public interface IRepository<T>
     {
         Task CreateAsync(T entity);
-        Task UpdateAsync();
+        Task SaveChanges();
         Task DeleteAsync(T category);
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);
         Task<T> GetByIdAsync(int Id);
+        Task UpdateAsync(T entity);
+        Task DeleteByIdAsync(int Id);
     }
 }

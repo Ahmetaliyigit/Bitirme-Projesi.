@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Drawing;
+using BLL.Abstract;
 using BLL.Service;
 using E_Ticaret_Prjesi_AHMT.Models;
 using Entity;
@@ -12,10 +13,10 @@ namespace E_Ticaret_Prjesi_AHMT.Controllers
 
         public int UserId2{ get; set; } = 25;
 
-        private readonly ProductService productservise;
+        private readonly IProductService productservise;
         
 
-        public HomeController(ProductService product)
+        public HomeController(IProductService product)
         {
             productservise = product;
           
@@ -29,19 +30,19 @@ namespace E_Ticaret_Prjesi_AHMT.Controllers
         public async Task<IActionResult> Shop(int Id) 
         {
             ViewBag.Id = Id;
-            return View(await productservise.GetallAsync());
+            return View(await productservise.GetAllAsync());
         }
 
         public async Task<IActionResult> ShopDetails(int Id)
         {
-            var detail = await productservise.GetallAsync(i => i.Id == Id);
+            var detail = await productservise.GetAllAsync(i => i.Id == Id);
             return View(detail.FirstOrDefault());
         }
 
         public async Task<IActionResult> ShoppingCart()
         {
             ViewBag.Toplamtutar = 0;
-            return View(await productservise.GetallAsync());
+            return View(await productservise.GetAllAsync());
         }
 
         public async Task<IActionResult> Checkout()

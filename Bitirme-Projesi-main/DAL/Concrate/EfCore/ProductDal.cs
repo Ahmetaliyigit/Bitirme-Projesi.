@@ -1,4 +1,5 @@
-﻿using DAL.Concrate.EfCore.Context;
+﻿using DAL.Abstract;
+using DAL.Concrate.EfCore.Context;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL.EfCore
 {
-    public class ProductDAL:Repository<Product>
+    public class ProductDAL:Repository<Product> , IProductDAL
     {
         private readonly DataContext db;
 
@@ -19,6 +20,18 @@ namespace DAL.EfCore
             db = context;
         }
 
+        public async Task<List<Product>> GetProuctsWithCategoryGenderColorAsync(Expression<Func<Product, bool>> filter = null)
+        {
+            var Products = db.Products.Include(i => i.Category).Include(i => i.Gender).Include(i => i.Color).AsQueryable();
+
+            if (filter != null)
+            {
+                Products = Products.Where(filter);
+            }
+
+            return await Products.ToListAsync();
+    
+        }
     }
 }
 

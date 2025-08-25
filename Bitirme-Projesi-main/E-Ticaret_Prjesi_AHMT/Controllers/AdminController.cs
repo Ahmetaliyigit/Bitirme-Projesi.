@@ -6,16 +6,17 @@ using WebUI.Services;
 using System.Diagnostics;
 using Mono.TextTemplating;
 using BLL.Service;
+using BLL.Abstract;
 
 namespace E_Ticaret_Prjesi_AHMT.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ProductService productservise;
-        private readonly ColorService colorService;
-        private readonly CategoryService category;
-        private readonly GenderService gender;
-        public AdminController(ProductService servise,ColorService color,CategoryService categoryservice,GenderService genderservice)
+        private readonly IProductService productservise;
+        private readonly IColorService colorService;
+        private readonly ICategoryService category;
+        private readonly IGenderService gender;
+        public AdminController(IProductService servise,IColorService color,ICategoryService categoryservice,IGenderService genderservice)
         {
             productservise = servise;
             colorService = color;
@@ -27,9 +28,9 @@ namespace E_Ticaret_Prjesi_AHMT.Controllers
 
         public async Task<IActionResult> CreateProduct()
         {
-            ViewBag.Color = await colorService.GetColorsAsync();
-            ViewBag.Category = await category.GetCategoriesAsync();
-            ViewBag.Gender = await gender.GetGendersAsync();
+            ViewBag.Color = await colorService.GetAllAsync();
+            ViewBag.Category = await category.GetAllAsync();
+            ViewBag.Gender = await gender.GetAllAsync();
             return View(new Product());
         }
 
@@ -68,15 +69,15 @@ namespace E_Ticaret_Prjesi_AHMT.Controllers
                 }
 
                
-                await productservise.AddProductAsync(model);
+                await productservise.CreateAsync(model);
                 return RedirectToAction("Index", "Home");
             }
 
             
 
-            ViewBag.Category = await category.GetCategoriesAsync();
-            ViewBag.Color = await colorService.GetColorsAsync();
-            ViewBag.Gender = await gender.GetGendersAsync();
+            ViewBag.Category = await category.GetAllAsync();
+            ViewBag.Color = await colorService.GetAllAsync();
+            ViewBag.Gender = await gender.GetAllAsync();
 
             return View(model);
         }
